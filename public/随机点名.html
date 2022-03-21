@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>点名</title>
+    <link rel="stylesheet" href="dianming.css">
+    <style type="text/css">
+        #div {
+            width: 180px;
+            height: 180px;
+            color: rgb(20, 151, 252);
+            line-height: 180px;
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+        }
+        
+        input {
+            background-color: rgb(17, 17, 17);
+            color: rgb(20, 151, 252);
+            border: none;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 300px;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+            position: absolute;
+        }
+        
+        td {
+            text-align: center;
+            line-height: 30px;
+        }
+        
+        .c1 {
+            height: 30px;
+        }
+        
+        .c2 {
+            height: 250px;
+        }
+        
+        .c3 {
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dots"></div>
+    <div class="dots2"></div>
+    <div class="dots3"></div>
+    <div id="div" onclick="start()">随机抽取</div>
+    <table>
+
+        <tr class="c1">
+            <td><input type="button" value="班长组长" onclick="f(0)" /></td>
+            <td><input type="button" value="小组组员" onclick="f(1)" /></td>
+        </tr>
+        <tr class="c2">
+            <td colspan="3"></td>
+        </tr>
+        <tr class="c3">
+            <td colspan="3"><input type="button" value="启动" onclick="start()" /></td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        var a = [];
+        var boo = true;
+
+        function f(t) {
+            if (boo) {
+                boo = false;
+                switch (t) {
+                    case 0:
+                        a = ["小明", "小红", "杨易霖", "王双", "卢君函", "易飞"];
+                        break;
+                    case 1:
+                        a = ["周星宇", "杨代明", "刘恒希", "何正雄", "谢玉阳", "汪建超", "鞠从涛", "郭辉", "侯宇", "苟于扬", "潘锡春", "黄欣平", "肖知勇", "张宇航",
+                            "李志刚", "蒋贵川", "林坤", "罗皓", "薛朝薪", "乔琦", "张伟杰", "王港", "胡勋", "胡威", "付利雄", "罗琪", "雍涛", "王建平", "洪梓瑞",
+                            "钱小豪", "龙毅", "蒲含书", "蒋尹超", "代雨", "李伟生", "周逸灵", "林德", "谢林峰", "李明亮", "黄治文", "舒志高", "薛程锦", "王凯",
+                            "郑锐", "冯伟平", "吴佳根", "刘书甫"
+                        ];
+                        break;
+                }
+            }
+        }
+
+        function start() {
+            if (a.length == 0) {
+                document.getElementById("div").innerHTML = "操作有误";
+            } else {
+                var ram = parseInt(Math.random() * a.length);
+                var index = 0;
+                var timer = setInterval(function() {
+                    if (index == 200) {
+                        clearInterval(timer);
+                        document.getElementById("div").innerHTML = a[ram];
+                        boo = true;
+                        return;
+                    }
+                    document.getElementById("div").setAttribute("class", "active");
+                    document.getElementById("div").innerHTML = a[++index % a.length];
+                }, 10);
+            }
+        }
+    </script>
+</body>
+
+</html>
